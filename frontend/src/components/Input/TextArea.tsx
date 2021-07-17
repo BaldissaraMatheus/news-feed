@@ -12,7 +12,7 @@ export const TextArea: React.FunctionComponent<TextProps> = (props: TextProps) =
 		<div className="input-container">
 			<label className="label">{props.label}</label>
 			<textarea
-				className="input input--textarea"
+				className="input textarea"
 				value={textAreaValue}
 				onChange={event => setTextAreaValue(event.target.value)}
 			/>

@@ -13,6 +13,16 @@ export interface HeaderProps {
 }
  
 export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
+	const navbarItems = props.navbarItems.map((item, index) => (
+		<li key={index} className="navbar__menu-item">
+			<Link
+				to={item.link}
+				className={`navbar__menu-item-link ${item.danger ? 'navbar__menu-item-link-danger': ''}`}
+			>
+				{ item.title }
+			</Link>
+		</li>
+	));
 	return (
 		<header className="header">
 			<nav className="navbar">
@@ -22,16 +32,7 @@ export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps)
 					</Link>
 				</div>
 				<ul className="navbar__menu">
-					{ props.navbarItems.map((item, index) => (
-					<li key={index} className="navbar__menu-item">
-						<Link
-							to={item.link}
-							className={`navbar__menu-item-link ${item.danger ? 'navbar__menu-item-link-danger': ''}`}
-						>
-							{ item.title }
-						</Link>
-					</li>
-					))}
+					{ navbarItems }
 				</ul>
 			</nav>
 		</header>

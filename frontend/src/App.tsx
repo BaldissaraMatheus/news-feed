@@ -11,7 +11,7 @@ function App() {
   const isLoggedIn = true;
   const navbarItems = isLoggedIn
   ? [
-    { title: 'Publicar notícia', link: '/news/create' },
+    { title: 'Publicar', link: '/news/create' },
     { title: 'Sair da conta', link: '/logout', danger: true }
   ]
   : [

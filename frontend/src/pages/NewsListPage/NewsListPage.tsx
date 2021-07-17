@@ -11,16 +11,17 @@ const newsList: NewsModel[]  = [
 ]
 
 export const NewsListPage: React.FunctionComponent = () => {
+	const newsItems = newsList.map(news => (
+		<div key={news.id} className="news__item">
+			<Link to={`/news/list/${news.id}`} key={news.id} className="news__item-link">
+				<News news={news} />
+			</Link>
+		</div>
+	));
 	return (
 		<Container>
 			<div className="news-list">
-				{ newsList.map(news => (
-					<div key={news.id} className="news__item">
-						<Link to={`/news/list/${news.id}`} key={news.id} className="news__item-link">
-							<News news={news} />
-						</Link>
-					</div>
-				)) }
+				{ newsItems }
 			</div>
 		</Container>
 	);
