@@ -16,7 +16,7 @@ export const NewsListPage: React.FunctionComponent = () => {
 			<div className="news-list">
 				{ newsList.map(news => (
 					<div key={news.id} className="news__item">
-						<Link to={`/news/${news.id}`} key={news.id} className="news__item-link">
+						<Link to={`/news/list/${news.id}`} key={news.id} className="news__item-link">
 							<News news={news} />
 						</Link>
 					</div>

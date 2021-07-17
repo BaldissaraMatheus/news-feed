@@ -9,7 +9,7 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
 		<header className="header">
 			<nav className="navbar">
 				<div className="navbar__logo">
-					<Link to="/" className="navbar__logo-link">
+					<Link to="/news/list" className="navbar__logo-link">
 						Notícias Rio
 					</Link>
 				</div>

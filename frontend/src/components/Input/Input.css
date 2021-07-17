@@ -1,0 +1,30 @@
+.label {
+	cursor: text;
+}
+
+.input {
+	display: block;
+	border: 1px solid var(--dark-gray);
+	border-radius: 2px;
+	padding: 5px;
+	/* TODO definir font-family  padrão; */
+	font-family: 'Source Sans Pro', sans-serif;
+	width: 400px;
+	max-width: 100%;
+	margin-bottom: var(--gap-lg);
+}
+
+.input--textarea {
+	height: 300px;
+	resize: none;
+}
+
+.input--error {
+	border: 1px solid #c51244;
+	background-color: #fff0f4;
+	color: #c51244;
+}
+
+.label {
+	display: block;
+}
