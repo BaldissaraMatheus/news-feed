@@ -11,9 +11,9 @@ interface ILink {
 export interface HeaderProps {
 	navbarItems: ILink[];
 }
- 
-export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
-	const navbarItems = props.navbarItems.map((item, index) => (
+
+const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
+	const navbarItemsElements = props.navbarItems.map((item, index) => (
 		<li key={index} className="navbar__menu-item">
 			<Link
 				to={item.link}
@@ -32,10 +32,11 @@ export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps)
 					</Link>
 				</div>
 				<ul className="navbar__menu">
-					{ navbarItems }
+					{ navbarItemsElements }
 				</ul>
 			</nav>
 		</header>
 	);
 }
- 
+
+export default Header;
