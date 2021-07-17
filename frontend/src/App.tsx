@@ -8,9 +8,20 @@ import { NewsPage } from './pages/NewsPage/NewsPage';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 
 function App() {
+  const isLoggedIn = true;
+  const navbarItems = isLoggedIn
+  ? [
+    { title: 'Publicar notícia', link: '/news/create' },
+    { title: 'Sair da conta', link: '/logout', danger: true }
+  ]
+  : [
+    { title: 'Entrar', link: '/login' },
+    { title: 'Cadastrar', link: '/register' }
+  ]
+
   return (
     <Router>
-      <Header/>
+      <Header navbarItems={navbarItems} />
       <Switch>
         <Route path="/news/list" exact component={ NewsListPage } />
         <Route path="/news/list/:id" component={ NewsPage } />

@@ -2,9 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 :root {
-	--gray: #e5e7eb;
 	--black: #2a2a2a;
+	--gray: #e5e7eb;
 	--dark-gray: #636161;
+	--red: #c51244;
+	--washed-red:#fff0f4;
 	--gap-sm: 6px;
 	--gap-md: 12px;
 	--gap-lg: 15px;

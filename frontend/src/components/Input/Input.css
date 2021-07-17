@@ -19,9 +19,9 @@
 }
 
 .input--error {
-	border: 1px solid #c51244;
-	background-color: #fff0f4;
-	color: #c51244;
+	border: 1px solid var(--red);
+	background-color: var(--washed-red);
+	color: var(--red);
 }
 
 .label {

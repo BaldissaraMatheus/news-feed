@@ -6,7 +6,6 @@
 	border-bottom: 1px solid var(--gray);
 	background-color: white;
 }
-
 .navbar {
 	height: 100%;
 	max-width: var(--container-size);
@@ -18,38 +17,34 @@
 	align-items: center;
 	justify-content: space-between;
 }
-
 .navbar__logo {
 	height: 100%;
 	display: inline-flex;
 	align-items: center;
 }
-
 .navbar__logo-link {
 	font-size: 2rem;
 	font-family: 'Playfair Display', serif;
 	text-decoration: none;
 	color: var(--black);
 }
-
 .navbar__logo:hover {
 	opacity: 0.75;
 }
-
 .navbar__menu {
 	display: inline-flex;
 	gap: 8px;
 }
-
 .navbar__menu-item {
 	list-style-type: none;
 }
-
 .navbar__menu-item-link {
 	text-decoration: none;
 	color: var(--black);
 }
-
 .navbar__menu-item-link:hover {
 	opacity: 0.75;
+}
+.navbar__menu-item-link-danger {
+	color: var(--red);
 }

@@ -2,9 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-export interface HeaderProps {}
+interface ILink {
+	title: string;
+	link: string;
+	danger?: boolean;
+}
+
+export interface HeaderProps {
+	navbarItems: ILink[];
+}
  
-export const Header: React.FunctionComponent<HeaderProps> = (props) => {
+export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
 	return (
 		<header className="header">
 			<nav className="navbar">
@@ -14,16 +22,16 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
 					</Link>
 				</div>
 				<ul className="navbar__menu">
-					<li className="navbar__menu-item">
-						<Link to="/login" className="navbar__menu-item-link">
-							Entrar
+					{ props.navbarItems.map((item, index) => (
+					<li key={index} className="navbar__menu-item">
+						<Link
+							to={item.link}
+							className={`navbar__menu-item-link ${item.danger ? 'navbar__menu-item-link-danger': ''}`}
+						>
+							{ item.title }
 						</Link>
 					</li>
-					<li className="navbar__menu-item">
-						<Link to="/register" className="navbar__menu-item-link">
-							Cadastrar
-						</Link>
-					</li>
+					))}
 				</ul>
 			</nav>
 		</header>
