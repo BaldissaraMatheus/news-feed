@@ -7,7 +7,6 @@
 	border: 1px solid var(--dark-gray);
 	border-radius: 2px;
 	padding: 5px;
-	/* TODO definir font-family  padrão; */
 	font-family: 'Source Sans Pro', sans-serif;
 	width: 400px;
 	max-width: 100%;

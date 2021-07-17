@@ -11,3 +11,6 @@
 .news__item-link {
 	text-decoration: none;
 }
+.news__item-link:hover {
+	opacity: 0.75;
+}
