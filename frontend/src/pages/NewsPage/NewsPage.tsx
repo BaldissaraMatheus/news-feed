@@ -1,7 +1,7 @@
 import React from 'react';
+import { Container } from '../../components/Container/Container';
 import { News } from '../../components/News/News';
 import { News as NewsModel } from '../../models/News';
-import './NewsPage.css';
 
 const news: NewsModel = {
 	id: '123',
@@ -12,9 +12,9 @@ const news: NewsModel = {
 
 export const NewsPage: React.FunctionComponent = () => {
 	return (
-			<main className="container">
-				<News news={news} />
-			</main>
+		<Container>
+			<News news={news} />
+		</Container>
 	);
 }
  

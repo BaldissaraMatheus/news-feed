@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Container } from '../../components/Container/Container';
 import { News as NewsModel } from '../../models/News';
 import { News } from '../../components/News/News';
 import './NewsListPage.css';
@@ -11,7 +12,7 @@ const newsList: NewsModel[]  = [
 
 export const NewsListPage: React.FunctionComponent = () => {
 	return (
-		<main className="container">
+		<Container>
 			<div className="news-list">
 				{ newsList.map(news => (
 					<div key={news.id} className="news__item">
@@ -21,7 +22,7 @@ export const NewsListPage: React.FunctionComponent = () => {
 					</div>
 				)) }
 			</div>
-		</main>
+		</Container>
 	);
 }
  
