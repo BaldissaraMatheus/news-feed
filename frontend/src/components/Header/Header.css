@@ -1,20 +1,19 @@
 .header {
 	height: 60px;
 	width: 100%;
-	padding-left: 12px;
-	padding-right: 12px;
-	border-bottom: 1px solid #e5e7eb;
+	padding-left: var(--gap-sm);
+	padding-right: var(--gap-sm);
+	border-bottom: 1px solid var(--gray);
 	background-color: white;
 }
 
 .navbar {
 	height: 100%;
-	/* TODO colocar valor em variavel */
-	max-width: 1280px;
+	max-width: var(--container-size);
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: var(--gap-md);
+	padding-right: var(--gap-md);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -30,7 +29,7 @@
 	font-size: 2rem;
 	font-family: 'Playfair Display', serif;
 	text-decoration: none;
-	color: black;
+	color: var(--black);
 }
 
 .navbar__logo:hover {
@@ -49,7 +48,7 @@
 .navbar__menu-item-link {
 	text-decoration: none;
 	font-family: 'Source Sans Pro', sans-serif;
-	color: black;
+	color: var(--black);
 }
 
 .navbar__menu-item-link:hover {

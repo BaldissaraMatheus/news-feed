@@ -1,4 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
+:root {
+	--gray: #e5e7eb;
+	--black: #2a2a2a;
+	--gap-md: 12px;
+	--gap-lg: 15px;
+	--container-size: 1280px;
+	--breakpoint-sm: 900px;
+	--breakpoint-md: 1250px;
+	--breakpoint-lg: 1450px;
+}
+
 * { box-sizing: border-box; }
