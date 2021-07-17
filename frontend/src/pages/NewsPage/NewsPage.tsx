@@ -1,6 +1,7 @@
 import React from 'react';
 import { News } from '../../components/News/News';
 import { News as NewsModel } from '../../models/News';
+import './NewsPage.css';
 
 const news: NewsModel = {
 	id: '123',
@@ -9,7 +10,7 @@ const news: NewsModel = {
 	createdAt: new Date(),
 }
 
-export const NewsContent: React.FunctionComponent = () => {
+export const NewsPage: React.FunctionComponent = () => {
 	return (
 			<main className="container">
 				<News news={news} />

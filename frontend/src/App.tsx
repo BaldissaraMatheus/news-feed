@@ -1,18 +1,18 @@
 import 'normalize.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import { Login } from './modules/Login/Login';
-import { NewsList } from './modules/NewsList/NewsList';
 import { Header } from './components/Header/Header';
-import { NewsContent } from './modules/NewsContent/NewsContent';
+import { LoginPage } from './pages/LoginPage/LoginPage';
+import { NewsListPage } from './pages/NewsListPage/NewsListPage';
+import { NewsPage } from './pages/NewsPage/NewsPage';
 
 function App() {
   return (
     <Router>
       <Header/>
       <Switch>
-        <Route path="/:id" component={ NewsContent } />
-        <Route path="/login" component={ Login } />
-        <Route path="/" component={ NewsList } />
+        <Route path="/:id" component={ NewsPage } />
+        <Route path="/login" component={ LoginPage } />
+        <Route path="/" component={ NewsListPage } />
       </Switch>
     </Router>
   );

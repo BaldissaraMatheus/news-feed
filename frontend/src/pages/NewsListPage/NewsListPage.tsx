@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { News as NewsModel } from '../../models/News';
 import { News } from '../../components/News/News';
-import './NewsList.css';
+import './NewsListPage.css';
 
 const newsList: NewsModel[]  = [
 	{ id: '1', title: 'Notícia', content: 'Conteúdo', createdAt: new Date() },
 	{ id: '2', title: 'Notícia', content: 'Conteúdo', createdAt: new Date() },
 ]
 
-export const NewsList: React.FunctionComponent = () => {
+export const NewsListPage: React.FunctionComponent = () => {
 	return (
 		<main className="container">
 			<div className="news-list">
