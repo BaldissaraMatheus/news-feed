@@ -5,6 +5,7 @@ import { CreateNewsPage } from './pages/CreateNewsPage/CreateNewsPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NewsListPage } from './pages/NewsListPage/NewsListPage';
 import { NewsPage } from './pages/NewsPage/NewsPage';
+import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/news/list/:id" component={ NewsPage } />
         <Route path="/news/create" component={ CreateNewsPage } />
         <Route path="/login" component={ LoginPage } />
+        <Route path="/register" component={ RegisterPage } />
       </Switch>
     </Router>
   );

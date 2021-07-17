@@ -2,9 +2,8 @@ import React from 'react';
 import { Button } from '../../components/Button/Button';
 import { Container } from '../../components/Container/Container';
 import { Input } from '../../components/Input/Input';
-import './LoginPage.css';
 
-export const LoginPage: React.FunctionComponent = () => {
+export const RegisterPage: React.FunctionComponent = () => {
 	function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 	}
@@ -12,10 +11,10 @@ export const LoginPage: React.FunctionComponent = () => {
 	return (
 		<Container>
 			<form className="form" onSubmit={handleSubmit}>
-				<h1 className="title">Entrar na sua conta</h1>
+				<h1 className="title">Criar uma conta</h1>
 				<Input label="Email" type="text" />
 				<Input label="Password" type="password" />
-				<Button text="Entrar" />
+				<Button text="Cadastrar" />
 			</form>
 		</Container>
 	);
