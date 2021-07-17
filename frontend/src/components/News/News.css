@@ -1,0 +1,29 @@
+.news {
+	display: flex;
+	flex-direction: column;
+	padding: var(--gap-md);
+	margin: var(--gap-md);
+}
+.news__title {
+	font-family: 'Playfair Display', serif;
+	font-size: 20px;
+	color: var(--black);
+	margin: 0;
+}
+.news__date {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12px;
+	margin-top: var(--gap-sm);
+	margin-bottom: var(--gap-lg);
+	color: var(--dark-gray);
+}
+.news__content {
+	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 15px;
+	line-height: 1.5rem;
+	font-weight: lighter;
+	color: var(--black);
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

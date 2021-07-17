@@ -4,6 +4,8 @@
 :root {
 	--gray: #e5e7eb;
 	--black: #2a2a2a;
+	--dark-gray: #636161;
+	--gap-sm: 6px;
 	--gap-md: 12px;
 	--gap-lg: 15px;
 	--container-size: 1280px;
