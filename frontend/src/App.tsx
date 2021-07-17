@@ -1,22 +1,18 @@
-import './App.css';
+import 'normalize.css';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Login } from './modules/Login/Login';
+import { Feed } from './modules/Feed/Feed';
+import { Header } from './components/Header/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          iabadabadu <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header/>
+      <Switch>
+        <Route path="/" exact component={ Feed } />
+        <Route path="/login" component={ Login } />
+      </Switch>
+    </Router>
   );
 }
 
