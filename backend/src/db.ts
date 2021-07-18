@@ -32,7 +32,9 @@ function getDb() {
 }
 
 async function getCollection(collectionName: string) {
-	await connect();
+	if (!state.db) {
+		await connect();
+	}
 	return getDb().collection(collectionName);
 }
 

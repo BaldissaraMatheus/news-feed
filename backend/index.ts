@@ -1,7 +1,20 @@
-const express = require('express');
+import express from 'express';
+import newsRoutes from './src/news/news.routes';
+
+const port = 4000;
 const app = express();
-const PORT = 4000;
-app.get('/', (req,res) => res.send('Express + TypeScript Server'));
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
-});
+
+async function startServer() {
+  try {
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true}))
+    app.use('/news', newsRoutes);
+    app.listen(port, () => {
+      console.log(`Servidor sendo executado em https://localhost:${port}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+startServer();
