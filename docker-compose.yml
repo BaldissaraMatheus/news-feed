@@ -9,11 +9,32 @@ services:
       - ./frontend/src:/app/src
     ports:
       - "3000:3000"
+    networks:
+      - app-network
+
   backend:
     container_name: backend
     build:
       context: ./backend
     volumes:
       - ./backend/src:/app/src
+      - ./backend/index.ts:/app/index.ts
     ports:
       - "4000:4000"
+    networks:
+      - app-network
+
+  mongodb:
+    image : mongo:4.4
+    container_name: mongodb
+    volumes:
+      - ./mongodb/database:/data/db
+    ports:
+      - 27018:27017
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks: 
+  app-network:
+    driver: bridge
