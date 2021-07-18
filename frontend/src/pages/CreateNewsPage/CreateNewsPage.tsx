@@ -15,13 +15,13 @@ async function handleSubmit(event: React.FormEvent, history: History) {
 		.then(response => response.json())
 		.catch(err => null);
 	if (!data) {
-		// TODO fazer tratamento de erro
 		return;
 	}
 	history.push('/news/list');
 }
 
-export const CreateNewsPage: React.FunctionComponent = () => {
+// TODO corrigir
+const CreateNewsPage: React.FunctionComponent = () => {
 	// const [title, setTitle] = useState('');
 	// const [content, setContent] = useState('');
 
@@ -38,3 +38,4 @@ export const CreateNewsPage: React.FunctionComponent = () => {
 	);
 }
  
+export default CreateNewsPage;

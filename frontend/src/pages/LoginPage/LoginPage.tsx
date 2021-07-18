@@ -24,7 +24,6 @@ async function handleSubmit(event: React.FormEvent, loginFn: Function, history: 
 		.then(response => response.json())
 		.catch(err => null);
 	if (!data) {
-		// TODO fazer tratamento de erro
 		return;
 	}
 	loginFn('teste');

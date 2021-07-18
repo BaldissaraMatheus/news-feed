@@ -22,7 +22,6 @@ async function logout(logoutFn: Function) {
 		.then(response => response.json())
 		.catch(err => null);
 	if (!data) {
-		// TODO fazer tratamento de erro
 		return;
 	}
 	logoutFn();

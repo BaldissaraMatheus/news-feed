@@ -33,7 +33,6 @@ async function handleSubmit(
 		.then(response => response.json())
 		.catch(err => null);
 	if (!data) {
-		// TODO fazer tratamento de erro
 		return;
 	}
 	history.push('/login');

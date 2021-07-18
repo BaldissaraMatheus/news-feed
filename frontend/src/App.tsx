@@ -1,13 +1,13 @@
 import 'normalize.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux'
-import Header from './components/Header/Header';
-import { CreateNewsPage } from './pages/CreateNewsPage/CreateNewsPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import { NewsListPage } from './pages/NewsListPage/NewsListPage';
-import { NewsPage } from './pages/NewsPage/NewsPage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
 import { AuthState } from './reducers/auth.reducer';
+import Header from './components/Header/Header';
+import CreateNewsPage from './pages/CreateNewsPage/CreateNewsPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import NewsListPage from './pages/NewsListPage/NewsListPage';
+import NewsPage from './pages/NewsPage/NewsPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import HomePage from './pages/HomePage/HomePage';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
 

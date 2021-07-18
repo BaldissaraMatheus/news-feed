@@ -12,8 +12,8 @@ export interface HeaderProps {
 	navbarItems: ILink[];
 }
 
-const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
-	const navbarItemsElements = props.navbarItems.map((item, index) => (
+function buildNavbarItems(navbarLinks: ILink[]) {
+	return navbarLinks.map((item, index) => (
 		<li key={index} className="navbar__menu-item">
 			<Link
 				to={item.link}
@@ -23,20 +23,21 @@ const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
 			</Link>
 		</li>
 	));
-	return (
-		<header className="header">
-			<nav className="navbar">
-				<div className="navbar__logo">
-					<Link to="/news/list" className="navbar__logo-link">
-						Notícias Rio
-					</Link>
-				</div>
-				<ul className="navbar__menu">
-					{ navbarItemsElements }
-				</ul>
-			</nav>
-		</header>
-	);
 }
+
+const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => (
+	<header className="header">
+		<nav className="navbar">
+			<div className="navbar__logo">
+				<Link to="/news/list" className="navbar__logo-link">
+					Notícias Rio
+				</Link>
+			</div>
+			<ul className="navbar__menu">
+				{ buildNavbarItems(props.navbarItems) }
+			</ul>
+		</nav>
+	</header>
+);
 
 export default Header;

@@ -6,8 +6,8 @@ function mapStateToProps(state: AuthState) {
 	return { loggedIn: state.loggedIn };
 }
 
-const HomePage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => {
-	return props.loggedIn ? <Redirect to="/news/list" /> : <Redirect to="/login" />
-}
+const HomePage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => props.loggedIn
+	? <Redirect to="/news/list" />
+	: <Redirect to="/login" />;
 
 export default connect(mapStateToProps)(HomePage)
