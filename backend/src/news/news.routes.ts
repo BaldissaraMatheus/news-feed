@@ -80,7 +80,9 @@ router.patch('/:id', authenticate, async (req: Request, res: Response, next: Nex
 			res.status(400).send('Deve haver pelo menos um campo no corpo da requisição');
 		}
 		const updated = await newsController.updateById(id, { title, content });
-		// TODO verificar se foi success true
+		if (updated.modifiedCount === 0) {
+			return res.status(404).send('Notícia não encontrada');
+		}
 		return res.status(204).send({ success: true });
 	} catch (err) {
 		console.log(err);
