@@ -8,7 +8,7 @@ export interface InputProps {
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
  
-export const Input: React.FunctionComponent<InputProps> = (props: InputProps) => (
+const Input: React.FunctionComponent<InputProps> = (props: InputProps) => (
 	<div className="input-container">
 		<label className="label">{props.label}</label>
 		<input
@@ -19,4 +19,6 @@ export const Input: React.FunctionComponent<InputProps> = (props: InputProps) =>
 		/>
 	</div>
 );
+
+export default Input;
  

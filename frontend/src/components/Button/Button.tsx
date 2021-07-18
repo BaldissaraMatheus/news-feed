@@ -4,11 +4,10 @@ export interface ButtonProps {
 	text: string|number;	
 }
  
-export const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => {
-	return (
-		<button className="button">
-			{props.text}
-		</button>
-	);
-}
+const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => (
+	<button className="button">
+		{props.text}
+	</button>
+);
  
+export default Button;

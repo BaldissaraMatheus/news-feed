@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container } from '../../components/Container/Container';
+import Container from '../../components/Container/Container';
 import { News as NewsModel } from '../../models/News';
-import { News } from '../../components/News/News';
+import News from '../../components/News/News';
 import './NewsListPage.css';
 
 const newsList: NewsModel[]  = [

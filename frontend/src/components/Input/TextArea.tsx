@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Input.css';
 
 export interface TextProps {
 	label: string,	
+	value?: string|number;
+	onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 }
  
-export const TextArea: React.FunctionComponent<TextProps> = (props: TextProps) => {
-	const [textAreaValue, setTextAreaValue] = useState('');
-
-	return (
-		<div className="input-container">
-			<label className="label">{props.label}</label>
-			<textarea
-				className="input textarea"
-				value={textAreaValue}
-				onChange={event => setTextAreaValue(event.target.value)}
-			/>
-		</div>
-	);
-}
+const TextArea: React.FunctionComponent<TextProps> = (props: TextProps) => (
+	<div className="input-container">
+		<label className="label">{props.label}</label>
+		<textarea
+			className="input textarea"
+			value={props.value}
+			onChange={props.onChange}
+		/>
+	</div>
+);
  
+export default TextArea;

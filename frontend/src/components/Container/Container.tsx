@@ -4,7 +4,7 @@ export interface ContainerProps {
 	children: JSX.Element,
 }
 
-export const Container: React.FunctionComponent<ContainerProps> = (props: ContainerProps) => {
+const Container: React.FunctionComponent<ContainerProps> = (props: ContainerProps) => {
 	return (
 		<main className="container">
 			{ props.children }
@@ -12,3 +12,4 @@ export const Container: React.FunctionComponent<ContainerProps> = (props: Contai
 	);
 }
  
+export default Container;

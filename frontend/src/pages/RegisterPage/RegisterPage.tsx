@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from '../../components/Button/Button';
-import { Container } from '../../components/Container/Container';
-import { Input } from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
+import Container from '../../components/Container/Container';
+import Input from '../../components/Input/Input';
 import { API_URL } from '../../config/constants';
 import { History } from 'history';
 import { AuthState } from '../../reducers/auth.reducer';
-import { connect } from 'react-redux';
 
 interface RegisterPageProps extends Partial<AuthState> {
 	register: Function,
-}
-
-function mapStateToProps(state: AuthState) {
-	return { token: state.token };
 }
 
 async function handleSubmit(
@@ -21,12 +16,10 @@ async function handleSubmit(
 	history: History,
 	email: string,
 	password: string,
-	token: string|undefined|null,
 ) {
 	event.preventDefault();
 	const fetchConfig: RequestInit = {
 		method: 'POST',
-		headers: { Authorization: `Bearer ${token}` },
 		body: JSON.stringify({ email, password }),
 	}
 	const data = await fetch(API_URL, fetchConfig)
@@ -45,7 +38,7 @@ const RegisterPage: React.FunctionComponent<RegisterPageProps> = (props: Registe
 
 	return (
 		<Container>
-			<form className="form" onSubmit={event => handleSubmit(event, history, emailValue, passwordValue, props.token)}>
+			<form className="form" onSubmit={event => handleSubmit(event, history, emailValue, passwordValue)}>
 				<h1 className="title">Criar uma conta</h1>
 				<Input label="Email" type="text" onChange={event => setEmail(event.target.value)} />
 				<Input label="Password" type="password" onChange={event => setPassword(event.target.value)} />
@@ -55,4 +48,4 @@ const RegisterPage: React.FunctionComponent<RegisterPageProps> = (props: Registe
 	);
 }
  
-export default connect(mapStateToProps)(RegisterPage);
+export default RegisterPage;
