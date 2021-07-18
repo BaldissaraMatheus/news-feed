@@ -7,6 +7,16 @@ interface LogoutPageProps extends Partial<AuthState> {
 	logout: Function,
 }
 
+function mapStateToProps(state: AuthState) {
+	return { loggedIn: state.loggedIn };
+}
+
+function mapDispatchToProps(dispatch: Function) {
+  return {
+		logout: () => dispatch({ type: 'LOGOUT' }),
+  };
+}
+
 async function logout(logoutFn: Function) {
 	const data = await fetch(API_URL)
 		.then(response => response.json())
@@ -19,21 +29,8 @@ async function logout(logoutFn: Function) {
 }
 
 const LogoutPage: React.FunctionComponent<LogoutPageProps> = (props: LogoutPageProps) => {
-	logout(props.logout)
+	logout(props.logout);
 	return props.loggedIn ? (<></>) : <Redirect to="/login" />
-}
- 
-function mapStateToProps(state: AuthState) {
-	return { loggedIn: state.loggedIn };
-}
-
-function mapDispatchToProps(dispatch: Function) {
-  return {
-		logout: () => {
-			dispatch({ type: 'LOGOUT' });
-		},
-  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutPage);
-

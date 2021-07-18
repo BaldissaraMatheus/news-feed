@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import './LoginPage.css';
 import { useHistory } from 'react-router';
 import { API_URL } from '../../config/constants';
+import { History } from 'history';
 
 interface LoginPageProps {
 	login: Function,
@@ -13,32 +14,29 @@ interface LoginPageProps {
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-		// TODO ver se dá pra colocar isso inline
-		login: (token: string) => {
-			dispatch({ type: 'LOGIN', token });
-		},
+		login: (token: string) => dispatch({ type: 'LOGIN', token }),
   };
 };
+
+async function handleSubmit(event: React.FormEvent, loginFn: Function, history: History) {
+	event.preventDefault();
+	const data = await fetch(API_URL)
+		.then(response => response.json())
+		.catch(err => null);
+	if (!data) {
+		// TODO fazer tratamento de erro
+		return;
+	}
+	loginFn('teste');
+	history.push('/news/list');
+}
 
 const LoginPage: React.FunctionComponent<LoginPageProps> = (props: LoginPageProps) => {
 	const history = useHistory();
 
-	async function handleSubmit(event: React.FormEvent, loginFn: Function) {
-		event.preventDefault();
-		const data = await fetch(API_URL)
-  		.then(response => response.json())
-			.catch(err => null);
-		if (!data) {
-			// TODO fazer tratamento de erro
-			return;
-		}
-		loginFn('teste');
-		history.push('/news/list');
-	}
-
 	return (
 		<Container>
-			<form className="form" onSubmit={event => handleSubmit(event, props.login)}>
+			<form className="form" onSubmit={event => handleSubmit(event, props.login, history)}>
 				<h1 className="title">Entrar na sua conta</h1>
 				<Input label="Email" type="text" />
 				<Input label="Password" type="password" />
