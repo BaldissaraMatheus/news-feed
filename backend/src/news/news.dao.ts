@@ -29,7 +29,7 @@ async function count(findQuery?: Partial<INews>): Promise<number> {
 	return collection.countDocuments();
 }
 
-async function findOne(query: Record<string, unknown>) {
+async function findOne(query: Partial<INews>) {
 	await initCollection();
 	return collection.findOne(query);
 }

@@ -1,5 +1,6 @@
 import express from 'express';
 import newsRoutes from './src/news/news.routes';
+import userRoutes from './src/user/user.routes';
 
 const port = 4000;
 const app = express();
@@ -16,6 +17,7 @@ async function startServer() {
       res.header('Access-Control-Expose-Headers', 'Content-Range');
       next();
     });
+    app.use('/', userRoutes);
     app.use('/news', newsRoutes);
     app.listen(port, () => {
       console.log(`Servidor sendo executado em https://localhost:${port}`);

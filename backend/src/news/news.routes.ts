@@ -1,4 +1,4 @@
-import { ObjectId, ObjectID } from 'bson';
+import { ObjectId } from 'bson';
 import express, { Request, Response, NextFunction, } from 'express';
 import newsController from './news.controller';
 
