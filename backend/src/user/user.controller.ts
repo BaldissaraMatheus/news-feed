@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import userDao from './user.dao';
 import { IUser } from './user';
+import { ObjectId } from 'bson';
 
 function generateToken(id: string) {
 	return jwt.sign({ id }, 'segredo');
@@ -21,6 +22,11 @@ async function findByEmail(email: string) {
 	return userDao.findOne({ email });
 }
 
+async function findById(id: string) {
+	const _id = new ObjectId(id);
+	return userDao.findOne({ _id });
+}
+
 async function create(user: Pick<IUser, 'email' | 'password'>) {
 	return userDao.insertOne(user);	
 }
@@ -28,6 +34,7 @@ async function create(user: Pick<IUser, 'email' | 'password'>) {
 export default {
 	generateToken,
 	findByEmail,
+	findById,
 	hashPassowrd,
 	isPasswordCorrect,
 	create,

@@ -1,10 +1,11 @@
 import { ObjectId } from 'bson';
 import express, { Request, Response, NextFunction, } from 'express';
 import newsController from './news.controller';
+import authenticate from '../auth/auth.middleware';
 
 const router = express.Router();
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { skip, limit } = req.query;
 		const skipNumber = skip ? Number.parseInt(skip.toString()) : 0;
@@ -28,7 +29,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		if (!req.body) {
 			return res.status(400).send('O corpo ta requisição não pode estar vazio');
@@ -49,7 +50,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 	}
 });
 
-router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
@@ -67,7 +68,7 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
 	}
 });
 
-router.patch('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.patch('/:id', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
@@ -87,7 +88,7 @@ router.patch('/:id', async (req: Request, res: Response, next: NextFunction) => 
 	}
 });
 
-router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:id', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
