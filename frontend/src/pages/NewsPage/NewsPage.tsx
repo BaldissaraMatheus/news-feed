@@ -9,7 +9,7 @@ const news: NewsModel = {
 	content: 'asdasfas',
 	createdAt: new Date(),
 }
-
+// TODO usar export default
 export const NewsPage: React.FunctionComponent = () => {
 	return (
 		<Container>

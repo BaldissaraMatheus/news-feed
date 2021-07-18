@@ -6,7 +6,7 @@ import { CreateNewsPage } from './pages/CreateNewsPage/CreateNewsPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { NewsListPage } from './pages/NewsListPage/NewsListPage';
 import { NewsPage } from './pages/NewsPage/NewsPage';
-import { RegisterPage } from './pages/RegisterPage/RegisterPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import { AuthState } from './reducers/auth.reducer';
 import HomePage from './pages/HomePage/HomePage';
 import LogoutPage from './pages/LogoutPage/LogoutPage';

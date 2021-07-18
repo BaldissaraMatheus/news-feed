@@ -13,6 +13,7 @@ interface LoginPageProps {
 
 function mapDispatchToProps(dispatch: Function) {
   return {
+		// TODO ver se dá pra colocar isso inline
 		login: (token: string) => {
 			dispatch({ type: 'LOGIN', token });
 		},
