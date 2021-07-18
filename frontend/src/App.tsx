@@ -3,13 +3,15 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Header from './components/Header/Header';
 import { CreateNewsPage } from './pages/CreateNewsPage/CreateNewsPage';
-import { LoginPage } from './pages/LoginPage/LoginPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import { NewsListPage } from './pages/NewsListPage/NewsListPage';
 import { NewsPage } from './pages/NewsPage/NewsPage';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 import { AuthState } from './reducers/auth.reducer';
+import HomePage from './pages/HomePage/HomePage';
+import LogoutPage from './pages/LogoutPage/LogoutPage';
 
-function mapStateToProps(state: Partial<AuthState>) {
+function mapStateToProps(state: AuthState) {
 	return { loggedIn: state.loggedIn };
 }
 
@@ -33,6 +35,8 @@ function App(props: Partial<AuthState>) {
           <Route path="/news/create" component={ CreateNewsPage } />
           <Route path="/login" component={ LoginPage } />
           <Route path="/register" component={ RegisterPage } />
+          <Route path="/logout" component={ LogoutPage } />
+          <Route path="/" component={ HomePage } />
         </Switch>
     </Router>
   );

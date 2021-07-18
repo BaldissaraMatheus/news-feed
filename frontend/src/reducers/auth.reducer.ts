@@ -15,7 +15,7 @@ interface ActionLogout {
 type Action = ActionLogin | ActionLogout;
 
 const initialState = {
-	loggedIn: true,
+	loggedIn: false,
 	token: null,
 }
 
