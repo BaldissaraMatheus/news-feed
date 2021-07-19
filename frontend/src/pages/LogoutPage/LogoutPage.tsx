@@ -18,12 +18,6 @@ function mapDispatchToProps(dispatch: Function) {
 }
 
 async function logout(logoutFn: Function) {
-	const data = await fetch(API_URL)
-		.then(response => response.json())
-		.catch(err => null);
-	if (!data) {
-		return;
-	}
 	logoutFn();
 }
 

@@ -10,3 +10,6 @@
 .button:hover {
 	opacity: 0.9;
 }
+.button--danger {
+	background-color: var(--red);
+}

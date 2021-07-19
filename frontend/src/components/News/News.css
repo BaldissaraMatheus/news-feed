@@ -1,3 +1,7 @@
+.buttons {
+	display: flex;
+	gap: var(--gap-sm);
+}
 .news {
 	display: flex;
 	flex-direction: column;

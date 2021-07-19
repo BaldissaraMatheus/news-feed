@@ -1,4 +1,4 @@
-const API_URL = 'https://jsonplaceholder.typicode.com/todos/1';
+const API_URL = 'http://localhost:4000';
 
 export {
 	API_URL,
