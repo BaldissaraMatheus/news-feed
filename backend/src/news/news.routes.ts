@@ -16,7 +16,6 @@ router.get('/', authenticate, async (req: Request, res: Response, next: NextFunc
 		return res
 			.status(statusCode)
 			.set('Accept-Ranges', 'news')
-			// TODO habilitar header
 			.set(
 				'Content-Range',
 				`news 1-${news.length}/${total}`,
@@ -36,11 +35,10 @@ router.post('/', authenticate, async (req: Request, res: Response, next: NextFun
 		}
 		const { title, content } = req.body;
 		if (!title) {
-			// TODO colocar primeira letra em maiúsculo
-			return res.status(400).send('o campo "title" é obrigatório');
+			return res.status(400).send('O campo "title" é obrigatório');
 		}
 		if (!content) {
-			return res.status(400).send('o campo "content" é obrigatório')
+			return res.status(400).send('O campo "content" é obrigatório')
 		}
 		await newsController.create(title, content);
 		return res.status(201).send({ success: true });

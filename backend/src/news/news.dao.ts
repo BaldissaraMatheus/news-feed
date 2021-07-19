@@ -1,5 +1,4 @@
 import { INews } from "./news";
-// import { InsertOneWriteOpResult, ObjectId, UpdateWriteOpResult } from 'mongodb';
 import driver from '../db';
 import { Collection, ObjectId } from "mongodb";
 
@@ -9,7 +8,6 @@ async function initCollection() {
 	collection = await driver.getCollection('news');
 }
 
-// TODO ordenar por data
 async function findAll(
 	query: Record<string, unknown> = {},
 	skip: number,

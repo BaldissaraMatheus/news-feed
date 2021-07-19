@@ -37,6 +37,10 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
 		if (!password) {
 			return res.status(400).send('O campo "password" é obrigatório');
 		}
+		const foundUser = await userController.findByEmail(email);
+		if (foundUser) {
+			return res.status(409).send('Já existe um usuário cadastrado com este email');
+		}
 		const hashPassword = await userController.hashPassowrd(password);
 		await userController.create({ email, password: hashPassword });
 		return res.status(201).send({ success: true });

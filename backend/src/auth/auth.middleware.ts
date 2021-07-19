@@ -6,11 +6,13 @@ import { ObjectId } from 'bson';
 async function authenticate(req: Request, res: Response, next: NextFunction) {
 	try {
 		const token = req.headers.authorization?.split('Bearer ')[1];
-		console.log({ token });
 		if (!token) {
 			return res.status(401).send('Authorization token é obrigatório');
 		}
 		const decoded = jwt.decode(token) as { id: string, }
+		if (!decoded) {
+			return res.status(401).send('Authorization token inválido');
+		}
 		const { id } = decoded;
 		if (!id) {
 			return res.status(401).send('Authorization token inválido');
