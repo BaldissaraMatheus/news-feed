@@ -2,7 +2,7 @@
 Aplicação de publicação de notícias.
 
 ## Instruções
-A aplicação depende de docker e docker-compose. Para executar a aplicação, entre na pasta do projeto e execute os seguintes comandos no terminal:
+A aplicação depende de docker e docker-compose. Para executá-la, entre na pasta do projeto e execute os seguintes comandos no terminal:
 ```
 docker-compose build
 docker-compose up
