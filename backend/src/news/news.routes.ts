@@ -18,7 +18,7 @@ router.get('/', authenticate, async (req: Request, res: Response, next: NextFunc
 			.set('Accept-Ranges', 'news')
 			.set(
 				'Content-Range',
-				`news 1-${news.length}/${total}`,
+				`news ${skipNumber+1}-${news.length}/${total}`,
 			)
 			.send(news);
 	} catch (err) {
