@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
 import Container from '../../components/Container/Container';
-import Input from '../../components/Input/Input';
-import TextArea from '../../components/Input/TextArea';
-import Button from '../../components/Button/Button';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { AuthState } from '../../reducers/auth.reducer';
 import { History } from 'history';
-import './CreateNewsPage.css';
 import { API_URL } from '../../config/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PublishForm from '../../components/PublishForm/PublishForm';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
 }
 
 async function handleSubmit(
-	event: React.FormEvent,
-	history: History,
 	title: string,
 	content: string,
 	token: string|undefined|null,
+	history: History,
 	setErrorMsg: Function,
 ) {
-	event.preventDefault();
 	const fetchConfig: RequestInit = {
 		method: 'POST',
 		headers: {
@@ -47,22 +42,18 @@ async function handleSubmit(
 }
 
 const CreateNewsPage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => {
-	const [title, setTitle] = useState('');
-	const [content, setContent] = useState('');
 	const [errorMsgValue, setErrorMessage] = useState('');
 
 	const history = useHistory();
 
 	return (
 		<Container>
-			<form className="form" onSubmit={event => handleSubmit(
-				event, history, title, content, props.token, setErrorMessage,
-			)}>
-				<Input label="Título" type="text" value={title} onChange={event => setTitle(event.target.value)} />
-				<TextArea label="Conteúdo" value={content} onChange={event => setContent(event.target.value)} />
-				<Button text="Enviar" />
+			<>
+				<PublishForm onSubmit={(title: string, content: string) => handleSubmit(
+					title, content, props.token, history, setErrorMessage
+				)}/>
 				<ErrorMessage msg={errorMsgValue} />
-			</form>
+			</>
 		</Container>
 	);
 }

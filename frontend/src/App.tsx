@@ -10,6 +10,7 @@ import NewsPage from './pages/NewsPage/NewsPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import HomePage from './pages/HomePage/HomePage';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
+import EditNewsPage from './pages/EditNewsPage/EditNewsPage';
 
 function mapStateToProps(state: AuthState) {
 	return { loggedIn: state.loggedIn };
@@ -31,7 +32,8 @@ function App(props: Partial<AuthState>) {
         <Header navbarItems={navbarItems} />
         <Switch>
           <Route path="/news/list" exact component={ NewsListPage } />
-          <Route path="/news/list/:id" component={ NewsPage } />
+          <Route path="/news/list/:id" exact component={ NewsPage } />
+          <Route path="/news/list/:id/edit" exact component={ EditNewsPage } />
           <Route path="/news/create" component={ CreateNewsPage } />
           <Route path="/login" component={ LoginPage } />
           <Route path="/register" component={ RegisterPage } />

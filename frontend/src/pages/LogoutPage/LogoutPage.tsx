@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { API_URL } from "../../config/constants";
 import { AuthState } from "../../reducers/auth.reducer";
 
 interface LogoutPageProps extends Partial<AuthState> {
