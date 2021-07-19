@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Container from '../../components/Container/Container';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import News from '../../components/News/News';
-import { API_URL } from '../../config/constants';
 import { News as INews } from '../../models/News';
 import { AuthState } from '../../reducers/auth.reducer';
+import { sendRequest } from '../../utils/api';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
@@ -17,19 +17,11 @@ async function getNews(
 	setNews: Function,
 	setErrorMsg: Function
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
+	const data = await sendRequest('GET', `/news/${id}`, token, null, setErrorMsg);
+	if (!data) {
+		return;
 	}
-	const data = await fetch(`${API_URL}/news/${id}`, fetchConfig);
-	if (!data.ok) {
-		data.text().then(text => setErrorMsg(text));
-		return null;
-	}
-	return setNews(await data.json());
+	return setNews(data);
 }
 
 function ComponentToRender(props: { news: INews | null | undefined }) {

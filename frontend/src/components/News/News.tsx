@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { API_URL } from '../../config/constants';
 import { News as INews } from '../../models/News';
 import { AuthState } from '../../reducers/auth.reducer';
 import Button from '../Button/Button';
@@ -8,6 +7,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { History } from 'history';
 import './News.css';
 import { useHistory } from 'react-router-dom';
+import { sendRequest } from '../../utils/api';
 
 export interface NewsProps extends Partial<AuthState> {
 	news: INews,
@@ -20,19 +20,10 @@ async function deleteNews(
 	history: History,
 	setErrorMsg: Function
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'DELETE',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
+	const data = await sendRequest('DELETE', `/news/${id}`, token, null, setErrorMsg);
+	if (data) {
+		return history.push('/news/list');
 	}
-	const data = await fetch(`${API_URL}/news/${id}`, fetchConfig);
-	if (!data.ok) {
-		data.text().then(text => setErrorMsg(text));
-		return null;
-	}
-	return history.push('/news/list');
 }
 
 function goToEditPage(id: string, history: History) {
@@ -49,20 +40,20 @@ const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
 
 	return (
 		<main className="container">
-			{ props.showButtons ?
-				<div className="buttons">
-					<Button
-						text="Editar"
-						onClick={() => goToEditPage(props.news._id, history)}
-					/>
-					<Button
-						text="Deletar"
-						danger={true}
-						onClick={() => deleteNews(
-							props.news._id, props.token, history, setErrorMessage,
-						)}
-					/>
-				</div>
+			{ props.showButtons
+				? <div className="buttons">
+						<Button
+							text="Editar"
+							onClick={() => goToEditPage(props.news._id, history)}
+						/>
+						<Button
+							text="Deletar"
+							danger={true}
+							onClick={() => deleteNews(
+								props.news._id, props.token, history, setErrorMessage,
+							)}
+						/>
+					</div>
 			: null }
 				<ErrorMessage msg={errorMsgValue} />
 			<div className="news">

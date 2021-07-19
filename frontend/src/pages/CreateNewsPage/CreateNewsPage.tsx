@@ -3,10 +3,10 @@ import Container from '../../components/Container/Container';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { AuthState } from '../../reducers/auth.reducer';
 import { History } from 'history';
-import { API_URL } from '../../config/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PublishForm from '../../components/PublishForm/PublishForm';
+import { sendRequest } from '../../utils/api';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
@@ -19,26 +19,10 @@ async function handleSubmit(
 	history: History,
 	setErrorMsg: Function,
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
-		body: JSON.stringify({ title, content }),
+	const data = await sendRequest('POST', '/news', token, { title, content }, setErrorMsg);
+	if (data) {
+		history.push('/news/list');
 	}
-	const data = await fetch(`${API_URL}/news`, fetchConfig)
-		.then(response => {
-			if (!response.ok) {
-				response.text().then(text => setErrorMsg(text));
-				return null;
-			}
-			return response.json()
-		});
-	if (!data) {
-		return;
-	}
-	history.push('/news/list');
 }
 
 const CreateNewsPage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => {

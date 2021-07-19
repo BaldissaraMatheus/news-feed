@@ -6,33 +6,23 @@ import News from '../../components/News/News';
 import { News as INews } from '../../models/News';
 import { connect } from 'react-redux';
 import { AuthState } from '../../reducers/auth.reducer';
-import { API_URL } from '../../config/constants';
 import './NewsListPage.css';
+import { sendRequest } from '../../utils/api';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
 }
 
-// TODO encapsular em service
 async function getNewsList(
 	token: string|undefined|null,
 	setNewsListFn: Function,
 	setErrorMsg: Function,
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
+	const data = await sendRequest('GET', '/news', token, null, setErrorMsg);
+	if (!data) {
+		return;
 	}
-	const data = await fetch(`${API_URL}/news`, fetchConfig);
-	if (!data.ok) {
-		data.text().then(text => setErrorMsg(text));
-		return null;
-	};
-	const news = await data.json();
-	setNewsListFn(news);
+	setNewsListFn(data);
 }
 
 function buildNewsItems(newsList: INews[]) {
@@ -48,6 +38,7 @@ function buildNewsItems(newsList: INews[]) {
 const NewsListPage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => {
 	const [newsList, setNewsList] = useState([]);
 	const [errorMsgValue, setErrorMessage] = useState('');
+
 	useEffect(() => {
 		getNewsList(props.token, setNewsList, setErrorMessage);
 	}, [props.token])

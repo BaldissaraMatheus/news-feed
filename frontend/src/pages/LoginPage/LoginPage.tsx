@@ -6,8 +6,8 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { connect } from 'react-redux';
 import './LoginPage.css';
 import { useHistory } from 'react-router';
-import { API_URL } from '../../config/constants';
 import { History } from 'history';
+import { sendRequest } from '../../utils/api';
 
 interface LoginPageProps {
 	login: Function,
@@ -28,19 +28,7 @@ async function handleSubmit(
 	setErrorMsg: Function,
 ) {
 	event.preventDefault();
-	const fetchConfig: RequestInit = {
-		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify({ email, password }),
-	}
-	const data = await fetch(`${API_URL}/login`, fetchConfig)
-		.then(response => {
-			if (!response.ok) {
-				response.text().then(text => setErrorMsg(text));
-				return null;
-			}
-			return response.json()
-		});
+	const data = await sendRequest('POST', '/login', null, { email, password }, setErrorMsg);
 	if (!data) {
 		return;
 	}

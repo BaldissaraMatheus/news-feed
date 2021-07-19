@@ -3,12 +3,12 @@ import Container from '../../components/Container/Container';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { AuthState } from '../../reducers/auth.reducer';
 import { History } from 'history';
-import { API_URL } from '../../config/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PublishForm from '../../components/PublishForm/PublishForm';
 import { News as INews } from '../../models/News';
 import './EditNewsPage.css'
+import { sendRequest } from '../../utils/api';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
@@ -20,19 +20,10 @@ async function getNews(
 	setNews: Function,
 	setErrorMsg: Function
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
+	const data = await sendRequest('GET', `/news/${id}`, token, null, setErrorMsg);
+	if (data) {
+		setNews(data);
 	}
-	const data = await fetch(`${API_URL}/news/${id}`, fetchConfig);
-	if (!data.ok) {
-		data.text().then(text => setErrorMsg(text));
-		return null;
-	}
-	return setNews(await data.json());
 }
 
 async function handleSubmit(
@@ -43,20 +34,10 @@ async function handleSubmit(
 	history: History,
 	setErrorMsg: Function,
 ) {
-	const fetchConfig: RequestInit = {
-		method: 'PATCH',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${token}`,
-		},
-		body: JSON.stringify({ title, content }),
+	const data = await sendRequest('PATCH', `/news/${id}`, token, { title, content }, setErrorMsg);
+	if (data) {
+		return history.push('/news/list');
 	}
-	const data = await fetch(`${API_URL}/news/${id}`, fetchConfig);
-	if (!data.ok) {
-		data.text().then(text => setErrorMsg(text));
-		return;
-	}
-	return history.push('/news/list');
 }
 
 function renderPublishForm(
