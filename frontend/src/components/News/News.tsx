@@ -54,7 +54,8 @@ const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
 							)}
 						/>
 					</div>
-			: null }
+				: null
+			}
 				<ErrorMessage msg={errorMsgValue} />
 			<div className="news">
 				<h1 className="news__title">{ props.news.title }</h1>
