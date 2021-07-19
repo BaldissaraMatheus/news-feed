@@ -74,7 +74,7 @@ const EditNewsPage: React.FunctionComponent<Partial<AuthState>> = (props: Partia
 	return (
 		<Container>
 			<div>
-				<h1 className="title">{ id }</h1>
+				<h1 className="title">Editando notícia</h1>
 				{ renderPublishForm(news, props.token, history, setErrorMessage) }
 				<ErrorMessage msg={errorMsgValue} />
 			</div>

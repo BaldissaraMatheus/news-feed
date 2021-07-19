@@ -1,4 +1,4 @@
-import { ObjectId } from 'bson';
+import { ObjectId } from 'mongodb';
 import express, { Request, Response, NextFunction, } from 'express';
 import newsController from './news.controller';
 import authenticate from '../auth/auth.middleware';
