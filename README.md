@@ -8,7 +8,7 @@ docker-compose build
 docker-compose up
 ```
 
-The frontend application can be accessed trough a web browser on the address `http://localhost:3000` and the REST API on `http://localhost:4000`.
+The frontend application can be accessed through a web browser on the address `http://localhost:3000` and the REST API on `http://localhost:4000`.
 
 ## API
 
