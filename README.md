@@ -1,19 +1,19 @@
-# CRUD de Notícias
-Aplicação de publicação de notícias.
+# News CRUD
+Web application for news publishing.
 
-## Instruções
-A aplicação depende de docker e docker-compose. Para executá-la, entre na pasta do projeto e execute os seguintes comandos no terminal:
+## Instructions
+The app requires docker and docker-compose. To execute it, enter the project root folder and run the following commands on your OS terminal:
 ```
 docker-compose build
 docker-compose up
 ```
 
-A aplicação frontend pode ser acessada pelo browser no endereço `http://localhost:3000` e a API no endereço `http://localhost:4000`.
+The frontend application can be accessed trough a web browser on the address `http://localhost:3000` and the REST API on `http://localhost:4000`.
 
 ## API
 
 ### POST /register
-Faz o cadastro de um novo usuário.
+Creates a new user.
 #### Body
 ```
 email: string;
@@ -29,21 +29,22 @@ body: { "success": true }
 #### Error Responses
 ```
 status code: 400
-message: "O campo x é obrigatório"
+message: "The x field is required"
 ```
 
 ```
 status code: 409
-message: "Já existe um usuário cadastrado com este email"
+message: "There is already a user created with this email"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### POST /login
-Loga com credenciais e obtém um token de acesso. Note que todas as rotas de acesso a notícias necessitam deste token para serem acessadas.
+Log in with user credentials and gets an acess token. Note that all the access routes to news require this token.
+
 #### Body
 ```
 email: string;
@@ -59,35 +60,35 @@ body: { "token": authorization-token }
 #### Error Responses
 ```
 status code: 400
-message: "O campo x é obrigatório"
+message: "The x field is required"
 ```
 
 ```
 status code: 401
-message: "Password incorreto"
+message: "Wrong password"
 ```
 
 ```
 status code: 404
-message: "Não foi encontrado nenhum usuário com este email"
+message: "No user found with this email"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### GET /news
-Lista todas as notícias
+Lists all the news
 #### Query
 ```
-skip (opcional): number, default: 0
-limit (opctional): number, default: 20
+skip (optional): number, default: 0
+limit (optional): number, default: 20
 ```
 
 #### Headers
 ```
-Authorization: string - Token de autorização obtido no POST /login
+Authorization: string - Authorization token obtained on POST /login
 ```
 
 #### Success Response
@@ -96,8 +97,8 @@ status codes: 200, 206
 body: [
 	{
 		"_id": "60f4e76976ccd5001fceb080",
-		"title": "Título bacana",
-		"content": "Conteúdo interessante",
+		"title": "Nice title",
+		"content": "Interesting content",
 		"createdAt": "2021-07-19T02:46:01.753Z"
 	}
 ]
@@ -106,20 +107,20 @@ body: [
 #### Error Responses
 ```
 status code: 401
-message: "Authorization token inválido"
+message: "Invalid authorization token"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### POST /news
-Publica nova notícia
+Publish a new news
 
 #### Headers
 ```
-Authorization: string - Token de autorização obtido no POST /login
+Authorization: string - Authorization token obtained on POST /login
 ```
 
 #### Body
@@ -140,25 +141,25 @@ body: {
 #### Error Responses
 ```
 status code: 400
-message: "O corpo da requisição não pode estar vazio"
+message: "The request body cannot be empty"
 ```
 
 ```
 status code: 400
-message: "O campo x é obrigatório"
+message: "The x field is required"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### GET /news/:id
-Busca notícia pelo seu ID
+Find news by its id
 
 #### Headers
 ```
-Authorization: string - Token de autorização obtido no POST /login
+Authorization: string - Authorization token obtained on POST /login
 ```
 
 #### Success Response
@@ -166,8 +167,8 @@ Authorization: string - Token de autorização obtido no POST /login
 status codes: 200
 body: {
 	"_id": "60f4e76976ccd5001fceb080",
-	"title": "Título bacana",
-	"content": "Conteúdo interessante",
+	"title": "Nice title",
+	"content": "Interesting content",
 	"createdAt": "2021-07-19T02:46:01.753Z"
 }
 ```
@@ -175,30 +176,30 @@ body: {
 #### Error Responses
 ```
 status code: 401
-message: "Authorization token inválido"
+message: "Invalid authorization token"
 ```
 
 ```
 status code: 404
-message: "Notícia não encontrada"
+message: "News not found"
 ```
 
 ```
 status code: 422
-message: "O id informado é inválido"
+message: "The passed id is invalid"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### PATCH /news/:id
-Atualiza um ou mais campos da notícia. Apenas um campo é obrigatório.
+Updates one or more field of a news. Only one field is required.
 
 #### Headers
 ```
-Authorization: string - Token de autorização obtido no POST /login
+Authorization: string - Authorization token obtained on POST /login
 ```
 
 #### Body
@@ -218,65 +219,59 @@ body: {
 #### Error Responses
 ```
 status code: 400
-message: "Deve haver pelo menos um campo no corpo da requisição"
+message: "There must be at least one field on the request body"
 ```
 
 ```
 status code: 401
-message: "Authorization token inválido"
+message: "Invalid authorization token"
 ```
 
 ```
 status code: 404
-message: "Notícia não encontrada"
+message: "News not found"
 ```
 
 ```
 status code: 422
-message: "O id informado é inválido"
+message: "The passed id is invalid"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
 
 ### DELETE /news/:id
-Deleta notícia
+Delete news by its id
 
 #### Headers
 ```
-Authorization: string - Token de autorização obtido no POST /login
+Authorization: string - Authorization token obtained on POST /login
 ```
 
 #### Success Response
 ```
 status codes: 204
-body: {
-	"_id": "60f4e76976ccd5001fceb080",
-	"title": "Título bacana",
-	"content": "Conteúdo interessante",
-	"createdAt": "2021-07-19T02:46:01.753Z"
-}
 ```
 
 #### Error Responses
 ```
 status code: 401
-message: "Authorization token inválido"
+message: "Invalid authorization token"
 ```
 
 ```
 status code: 404
-message: "Notícia não encontrada"
+message: "News not found"
 ```
 
 ```
 status code: 422
-message: "O id informado é inválido"
+message: "The passed id is invalid"
 ```
 
 ```
 status code: 500
-message: "Ocorreu um erro inesperado"
+message: "An unexpected error ocurred"
 ```
