@@ -1,6 +1,6 @@
 {
-  "short_name": "Feed de notícias",
-  "name": "Uma lista de notícias",
+  "short_name": "News Feed",
+  "name": "News Feed",
   "icons": [
     {
       "src": "favicon.ico",

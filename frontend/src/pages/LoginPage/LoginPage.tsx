@@ -47,10 +47,10 @@ const LoginPage: React.FunctionComponent<LoginPageProps> = (props: LoginPageProp
 			<form className="form" onSubmit={event => handleSubmit(
 				event, props.login, history, emailValue, passwordValue, setErrorMessage
 			)}>
-				<h1 className="title">Entrar na sua conta</h1>
+				<h1 className="title">Login with your account</h1>
 				<Input label="Email" type="text" onChange={event => setEmail(event.target.value)} />
 				<Input label="Password" type="password" onChange={event => setPassword(event.target.value)} />
-				<Button text="Entrar" />
+				<Button text="Login" />
 				<ErrorMessage msg={errorMsgValue} />
 			</form>
 		</Container>

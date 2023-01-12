@@ -30,7 +30,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => (
 		<nav className="navbar">
 			<div className="navbar__logo">
 				<Link to="/" className="navbar__logo-link">
-					Notícias Rio
+					Awesome News
 				</Link>
 			</div>
 			<ul className="navbar__menu">

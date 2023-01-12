@@ -31,20 +31,20 @@ router.get('/', authenticate, async (req: Request, res: Response, next: NextFunc
 router.post('/', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		if (!req.body) {
-			return res.status(400).send('O corpo ta requisição não pode estar vazio');
+			return res.status(400).send('The request\'s body cannot be empty');
 		}
 		const { title, content } = req.body;
 		if (!title) {
-			return res.status(400).send('O campo "title" é obrigatório');
+			return res.status(400).send('The field "title" is required');
 		}
 		if (!content) {
-			return res.status(400).send('O campo "content" é obrigatório')
+			return res.status(400).send('The field "content" is required')
 		}
 		await newsController.create(title, content);
 		return res.status(201).send({ success: true });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).send('Ocorreu um erro inesperado');
+		return res.status(500).send('An unexpected error occurred');
 	}
 });
 
@@ -53,16 +53,16 @@ router.get('/:id', authenticate, async (req: Request, res: Response, next: NextF
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
 		if (!isValid) {
-			return res.status(422).send('O id informado é inválido');
+			return res.status(422).send('The provided ID is invalid');
 		}
 		const news = await newsController.findbyId(id);
 		if (!news) {
-			return res.status(404).send('Notícia não encontrada');
+			return res.status(404).send('News not found');
 		}
 		return res.status(200).send(news);
 	} catch (err) {
 		console.log(err);
-		return res.status(500).send('Ocorreu um erro inesperado');
+		return res.status(500).send('An unexpected error occurred');
 	}
 });
 
@@ -71,20 +71,20 @@ router.patch('/:id', authenticate, async (req: Request, res: Response, next: Nex
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
 		if (!isValid) {
-			res.status(422).send('O id informado é inválido');
+			res.status(422).send('The provided ID is invalid');
 		}
 		const { title, content } = req.body;
 		if (!title && !content) {
-			res.status(400).send('Deve haver pelo menos um campo no corpo da requisição');
+			res.status(400).send('There must be at least 1 field in the request\'s body');
 		}
 		const updated = await newsController.updateById(id, { title, content });
 		if (updated.modifiedCount === 0) {
-			return res.status(404).send('Notícia não encontrada');
+			return res.status(404).send('News not found');
 		}
 		return res.status(204).send({ success: true });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).send('Ocorreu um erro inesperado');
+		return res.status(500).send('An unexpected error occurred');
 	}
 });
 
@@ -93,16 +93,16 @@ router.delete('/:id', authenticate, async (req: Request, res: Response, next: Ne
 		const { id } = req.params;
 		const isValid = ObjectId.isValid(id);
 		if (!isValid) {
-			return res.status(422).send('O id informado é inválido');
+			return res.status(422).send('The provided ID is invalid');
 		}
 		const deleted = await newsController.deleteById(id);
 		if (!deleted) {
-			return res.status(404).send('Notícia não encontrada');
+			return res.status(404).send('News not found');
 		}
 		return res.status(204).send({ success: true });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).send('Ocorreu um erro inesperado');
+		return res.status(500).send('An unexpected error occurred');
 	}
 });
 

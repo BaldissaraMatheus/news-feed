@@ -32,9 +32,9 @@ const PublishForm: React.FunctionComponent<PublishFormProps> = (props: PublishFo
 	return (
 		<Container>
 			<form className="form" onSubmit={event => handleSubmit(event, title, content, props.onSubmit)}>
-				<Input label="Título" type="text" value={title} onChange={event => setTitle(event.target.value)} />
-				<TextArea label="Conteúdo" value={content} onChange={event => setContent(event.target.value)} />
-				<Button text="Enviar" />
+				<Input label="Title" type="text" value={title} onChange={event => setTitle(event.target.value)} />
+				<TextArea label="Content" value={content} onChange={event => setContent(event.target.value)} />
+				<Button text="Publish" />
 			</form>
 		</Container>
 	);

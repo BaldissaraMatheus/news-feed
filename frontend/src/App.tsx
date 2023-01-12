@@ -19,12 +19,12 @@ function mapStateToProps(state: AuthState) {
 function App(props: Partial<AuthState>) {
   const navbarItems = props.loggedIn
   ? [
-    { title: 'Publicar', link: '/news/create' },
-    { title: 'Sair da conta', link: '/logout', danger: true }
+    { title: 'Publish', link: '/news/create' },
+    { title: 'Logout', link: '/logout', danger: true }
   ]
   : [
-    { title: 'Entrar', link: '/login' },
-    { title: 'Cadastrar', link: '/register' }
+    { title: 'Login', link: '/login' },
+    { title: 'Register', link: '/register' }
   ];
 
   return (

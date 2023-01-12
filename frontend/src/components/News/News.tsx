@@ -47,11 +47,11 @@ const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
 			{ props.showButtons
 				? <div className="buttons">
 						<Button
-							text="Editar"
+							text="Update"
 							onClick={() => goToEditPage(props.news._id, history)}
 						/>
 						<Button
-							text="Deletar"
+							text="Delete"
 							danger={true}
 							onClick={() => deleteNews(
 								props.news._id, props.token, history, setErrorMessage,
@@ -63,7 +63,7 @@ const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
 				<ErrorMessage msg={errorMsgValue} />
 			<div className="news">
 				<h1 className="news__title">{ props.news.title }</h1>
-				<h4 className="news__date">Publicada em { formatDate(props.news.createdAt) }</h4>
+				<h4 className="news__date">Publish at { formatDate(props.news.createdAt) }</h4>
 				<p className="news__content">{ props.news.content }</p>
 			</div>
 		</main>

@@ -38,10 +38,10 @@ const RegisterPage: React.FunctionComponent<RegisterPageProps> = (props: Registe
 			<form className="form" onSubmit={event => handleSubmit(
 				event, history, emailValue, passwordValue, setErrorMessage
 			)}>
-				<h1 className="title">Criar uma conta</h1>
+				<h1 className="title">Create an account</h1>
 				<Input label="Email" type="text" onChange={event => setEmail(event.target.value)} />
 				<Input label="Password" type="password" onChange={event => setPassword(event.target.value)} />
-				<Button text="Cadastrar" />
+				<Button text="Register" />
 				<ErrorMessage msg={errorMsgValue} />
 			</form>
 		</Container>

@@ -47,7 +47,11 @@ const NewsListPage: React.FunctionComponent<Partial<AuthState>> = (props: Partia
 		<Container>
 			<div className="news-list">
 				<ErrorMessage msg={errorMsgValue} />
-				{ buildNewsItems(newsList) }
+				{
+					newsList.length
+						? buildNewsItems(newsList)
+						: <p>There are no news yet, try publishing a new one!</p>
+				}
 			</div>
 		</Container>
 	);
