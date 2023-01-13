@@ -1,4 +1,4 @@
-# News CRUD
+# News Journal
 Web application for publishing news.
 <br>
 <br>
