@@ -1,8 +1,8 @@
 # News CRUD
-Web application for news publishing.
+Web application for publishing news.
 <br>
 <br>
-![image](https://user-images.githubusercontent.com/19363147/137604188-2afc0f04-2d93-47f9-9cbb-1f5488032672.png)
+![image](https://user-images.githubusercontent.com/19363147/212220713-e975b88e-3c4b-439d-95f1-e3c42c6b6918.png)
 
 ## Instructions
 The app requires docker and docker-compose. To execute it, enter the project root folder and run the following commands on your OS terminal:
