@@ -14,6 +14,7 @@
 	padding-left: var(--gap-md);
 	padding-right: var(--gap-md);
 	display: flex;
+	gap: 20px;
 	align-items: center;
 	justify-content: space-between;
 }
@@ -21,6 +22,7 @@
 	height: 100%;
 	display: inline-flex;
 	align-items: center;
+	white-space: nowrap;
 }
 .navbar__logo-link {
 	font-size: 2rem;
@@ -34,6 +36,7 @@
 .navbar__menu {
 	display: inline-flex;
 	gap: 8px;
+	padding-left: 0;
 }
 .navbar__menu-item {
 	list-style-type: none;

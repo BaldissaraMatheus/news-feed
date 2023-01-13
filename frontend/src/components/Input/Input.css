@@ -2,15 +2,20 @@
 	cursor: text;
 	display: block;
 }
+.input-container {
+	flex-grow: 1;
+}
 .input {
 	display: block;
 	border: 1px solid var(--dark-gray);
 	border-radius: 2px;
 	padding: 5px;
 	font-family: 'Source Sans Pro', sans-serif;
-	width: 400px;
-	max-width: 100%;
+	width: 100%;
+	max-width: 500px;
 	margin-bottom: var(--gap-lg);
+	margin-left: auto;
+	margin-right: auto;
 }
 .input--error {
 	border: 1px solid var(--red);
