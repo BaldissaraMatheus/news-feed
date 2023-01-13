@@ -35,7 +35,7 @@ function mapStateToProps(state: AuthState) {
 }
 
 function formatDate(date: Date) {
-	return new Date(date).toLocaleDateString('pt-BR')
+	return new Date(date).toLocaleDateString('US')
 }
 
 const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
@@ -60,7 +60,7 @@ const News: React.FunctionComponent<NewsProps> = (props: NewsProps) => {
 					</div>
 				: null
 			}
-				<ErrorMessage msg={errorMsgValue} />
+			<ErrorMessage msg={errorMsgValue} />
 			<div className="news">
 				<h1 className="news__title">{ props.news.title }</h1>
 				<h4 className="news__date">Publish at { formatDate(props.news.createdAt) }</h4>

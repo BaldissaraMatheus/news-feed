@@ -1,4 +1,5 @@
 import 'normalize.css';
+import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { AuthState } from './reducers/auth.reducer';
@@ -11,6 +12,8 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import HomePage from './pages/HomePage/HomePage';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
 import EditNewsPage from './pages/EditNewsPage/EditNewsPage';
+import SearchInput from './components/SearchInput/SearchInput';
+import SearchContext from './contexts/search.context';
 
 function mapStateToProps(state: AuthState) {
 	return { loggedIn: state.loggedIn };
@@ -27,9 +30,18 @@ function App(props: Partial<AuthState>) {
     { title: 'Register', link: '/register' }
   ];
 
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <Router>
-        <Header navbarItems={navbarItems} />
+      <Header navbarItems={navbarItems}>
+        {
+          props.loggedIn
+            ? <SearchInput onInputChange={setSearchValue} />
+            : <></>
+        }
+      </Header>
+      <SearchContext.Provider value={searchValue}>
         <Switch>
           <Route path="/news/list" exact component={ NewsListPage } />
           <Route path="/news/list/:id" exact component={ NewsPage } />
@@ -40,6 +52,7 @@ function App(props: Partial<AuthState>) {
           <Route path="/logout" component={ LogoutPage } />
           <Route path="/" component={ HomePage } />
         </Switch>
+      </SearchContext.Provider>
     </Router>
   );
 }

@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get('/', authenticate, async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { skip, limit } = req.query;
+		const { skip, limit, search } = req.query;
 		const skipNumber = skip ? Number.parseInt(skip.toString()) : 0;
 		const limitNumber = limit ? Number.parseInt(limit.toString()) : 20;
-		const { news, total } = await newsController.findAll(skipNumber, limitNumber);
-		// https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/206
+		const { news, total } = await newsController.findAll(skipNumber, limitNumber, `${search || ''}`);
+		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/206
 		const statusCode = news.length === total ? 200 : 206;
 		return res
 			.status(statusCode)
@@ -23,7 +23,7 @@ router.get('/', authenticate, async (req: Request, res: Response, next: NextFunc
 			.send(news);
 	} catch (err) {
 		console.log(err);
-		return res.status(500).send('Ocorreu um erro inesperado');
+		return res.status(500).send('An unexpected error occurred');
 	}
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -10,6 +10,7 @@ interface ILink {
 
 export interface HeaderProps {
 	navbarItems: ILink[];
+	children: JSX.Element;
 }
 
 function buildNavbarItems(navbarLinks: ILink[]) {
@@ -25,19 +26,24 @@ function buildNavbarItems(navbarLinks: ILink[]) {
 	));
 }
 
-const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => (
-	<header className="header">
-		<nav className="navbar">
-			<div className="navbar__logo">
-				<Link to="/" className="navbar__logo-link">
-					Awesome News
-				</Link>
-			</div>
-			<ul className="navbar__menu">
-				{ buildNavbarItems(props.navbarItems) }
-			</ul>
-		</nav>
-	</header>
-);
+const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
+
+
+	return (
+		<header className="header">
+			<nav className="navbar">
+				<div className="navbar__logo">
+					<Link to="/" className="navbar__logo-link">
+						News Journal
+					</Link>
+				</div>
+				{ props.children ? props.children : <></> }
+				<ul className="navbar__menu">
+					{ buildNavbarItems(props.navbarItems) }
+				</ul>
+			</nav>
+		</header>
+	)
+};
 
 export default Header;

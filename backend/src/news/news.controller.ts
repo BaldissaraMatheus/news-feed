@@ -2,8 +2,20 @@ import { ObjectId } from "bson";
 import { INews } from "./news";
 import newsDao from "./news.dao";
 
-async function findAll(skip: number, limit: number): Promise<{ news: INews[], total: number }> {
-	const newsPromise = newsDao.findAll({}, skip, limit);
+async function findAll(
+	skip: number,
+	limit: number,
+	search?: string,
+): Promise<{ news: INews[], total: number }> {
+	const query = search
+		? {
+			$or: [
+				{ content: { '$regex': search, '$options': 'i' } },
+				{	title: { '$regex': search, '$options': 'i' } }
+			]
+		}
+		: {};
+	const newsPromise = newsDao.findAll(query, skip, limit);
 	const countPromise = newsDao.count();
 	const result = await Promise.all([newsPromise, countPromise]);
 	return {

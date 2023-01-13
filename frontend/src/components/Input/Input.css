@@ -21,3 +21,6 @@
 	height: 300px;
 	resize: none;
 }
+.no-margin {
+	margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -8,21 +8,10 @@ import { connect } from 'react-redux';
 import { AuthState } from '../../reducers/auth.reducer';
 import './NewsListPage.css';
 import { sendRequest } from '../../utils/api';
+import SearchContext from '../../contexts/search.context';
 
 function mapStateToProps(state: AuthState) {
 	return { token: state.token };
-}
-
-async function getNewsList(
-	token: string|undefined|null,
-	setNewsListFn: Function,
-	setErrorMsg: Function,
-) {
-	const data = await sendRequest('GET', '/news', token, null, setErrorMsg);
-	if (!data) {
-		return;
-	}
-	setNewsListFn(data);
 }
 
 function buildNewsItems(newsList: INews[]) {
@@ -38,10 +27,27 @@ function buildNewsItems(newsList: INews[]) {
 const NewsListPage: React.FunctionComponent<Partial<AuthState>> = (props: Partial<AuthState>) => {
 	const [newsList, setNewsList] = useState([]);
 	const [errorMsgValue, setErrorMessage] = useState('');
+	const searchValue = useContext(SearchContext);
+
+	async function getNewsList(
+		token: string|undefined|null,
+		setNewsListFn: Function,
+		setErrorMsg: Function,
+	) {
+		let path = '/news';
+		if (searchValue) {
+			path += `?search=${searchValue}`
+		}
+		const data = await sendRequest('GET', path, token, null, setErrorMsg);
+		if (!data) {
+			return;
+		}
+		setNewsListFn(data);
+	}
 
 	useEffect(() => {
 		getNewsList(props.token, setNewsList, setErrorMessage);
-	}, [props.token])
+	}, [props.token, searchValue])
 
 	return (
 		<Container>
@@ -50,7 +56,12 @@ const NewsListPage: React.FunctionComponent<Partial<AuthState>> = (props: Partia
 				{
 					newsList.length
 						? buildNewsItems(newsList)
-						: <p>There are no news yet, try publishing a new one!</p>
+						: <p>{
+							searchValue
+								? 'There are no results for this search input'
+								: 'There are no news yet, try publishing a new one!'
+							}
+						</p>
 				}
 			</div>
 		</Container>

@@ -21,7 +21,7 @@ async function startServer() {
     app.use('/', userRoutes);
     app.use('/news', newsRoutes);
     app.listen(port, () => {
-      console.log(`Servidor sendo executado em http://localhost:${port}`);
+      console.log(`API running at http://localhost:${port}`);
     });
   } catch (err) {
     console.log(err);
